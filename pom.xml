@@ -31,8 +31,8 @@
     </modules>
 
     <name>${project.artifactId}</name>
-    <description>芋道项目基础脚手架</description>
-    <url>https://github.com/YunaiV/ruoyi-vue-pro</url>
+    <description>SIZE项目基础脚手架</description>
+    <url>https://github.com/linszjava/size-cloud</url>
 
     <properties>
         <revision>2026.03-jdk8-SNAPSHOT</revision>
