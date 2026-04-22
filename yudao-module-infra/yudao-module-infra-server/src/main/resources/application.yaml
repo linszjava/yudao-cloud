@@ -168,5 +168,9 @@ yudao:
     enable: true
     ignore-urls:
     ignore-tables:
+  security:
+    permit-all-urls:
+      - /admin/**
+      - /druid/**
 
 debug: false

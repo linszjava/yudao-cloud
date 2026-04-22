@@ -59,6 +59,10 @@ spring:
           uri: lb://infra-server
           predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
             - Path=/admin/**
+        - id: infra-druid # 路由的编号（Druid 监控）
+          uri: lb://infra-server
+          predicates:
+            - Path=/druid/**
         - id: infra-websocket # 路由的编号（WebSocket）
           uri: lb://infra-server
           predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
