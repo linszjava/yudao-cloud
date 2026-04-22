@@ -33,7 +33,7 @@ import static cn.iocoder.yudao.framework.common.util.cache.CacheUtils.buildAsync
  * 1. 验证通过时，将 userId、userType、tenantId 通过 Header 转发给服务
  * 2. 验证不通过，还是会转发给服务。因为，接口是否需要登录的校验，还是交给服务自身处理
  *
- * @author 芋道源码
+ * @author linsz
  */
 @Component
 public class TokenAuthenticationFilter implements GlobalFilter, Ordered {

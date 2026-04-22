@@ -35,11 +35,8 @@
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-
+        <!-- Spring Cloud Gateway 是基于 WebFlux（Netty） 而非 Servlet 的
+        传递依赖中会引用 javax.servlet.http.HttpServletRequest 等 Servlet API 类-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -81,7 +78,7 @@
         </dependency>
 
         <dependency>
-            <!-- 必须引入，否则会有 https://gitee.com/yudaocode/yudao-cloud-mini/issues/IB5PXW 告警 -->
+            <!--     简单说，不加 Caffeine 不会报错、不影响功能，只是会有一条 WARN 告警       -->
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
         </dependency>

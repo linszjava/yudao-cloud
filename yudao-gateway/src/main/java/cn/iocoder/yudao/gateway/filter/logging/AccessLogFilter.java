@@ -52,7 +52,7 @@ import static cn.hutool.core.date.DatePattern.NORM_DATETIME_MS_FORMATTER;
  *
  * TODO 芋艿：如果网关执行异常，不会记录访问日志，后续研究下 https://github.com/Silvmike/webflux-demo/blob/master/tests/src/test/java/ru/hardcoders/demo/webflux/web_handler/filters/logging
  *
- * @author 芋道源码
+ * @author linsz
  */
 @Slf4j
 @Component
@@ -71,7 +71,6 @@ public class AccessLogFilter implements GlobalFilter, Ordered {
         // log.info("[writeAccessLog][日志内容：{}]", JsonUtils.toJsonString(gatewayLog));
 
         // 方式二：调用远程服务，记录到数据库中
-        // TODO 芋艿：暂未实现
 
         // 方式三：打印到控制台，方便排查错误
         try {
@@ -96,21 +95,20 @@ public class AccessLogFilter implements GlobalFilter, Ordered {
             values.put("duration", gatewayLog.getDuration() != null ? gatewayLog.getDuration() + " ms" : null);
             log.info("[writeAccessLog][网关日志：{}]", JsonUtils.toJsonPrettyString(values));
         } catch (Exception e) {
-            // 兜底处理，参见 https://gitee.com/zhijiantianya/yudao-cloud/issues/IC9A70
             log.error("[writeAccessLog][打印网关日志时，发生异常]", e);
         }
     }
 
     @Override
     public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE;
+        return Ordered.HIGHEST_PRECEDENCE; // 优先级最高
     }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         // 将 Request 中可以直接获取到的参数，设置到网关日志
         ServerHttpRequest request = exchange.getRequest();
-        // TODO traceId
+
         AccessLog gatewayLog = new AccessLog();
         gatewayLog.setRoute(WebFrameworkUtils.getGatewayRoute(exchange));
         gatewayLog.setSchema(request.getURI().getScheme());

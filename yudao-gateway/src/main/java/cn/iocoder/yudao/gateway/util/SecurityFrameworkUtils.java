@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  *
  * copy from yudao-spring-boot-starter-security 的 SecurityFrameworkUtils 类
  *
- * @author 芋道源码
+ * @author linsz
  */
 @Slf4j
 public class SecurityFrameworkUtils {
